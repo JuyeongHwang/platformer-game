@@ -16,24 +16,28 @@ screen = pygame.display.set_mode((SCREEN_WD,SCREEN_HT),0,32) #set_mode(size=(0, 
 pygame.display.set_caption("PyMunk_Example") #window title
 clock = pygame.time.Clock() #create an object to help track time
 
-space = pymunk.Space() #simulation space
-space.gravity = (0,100)
+space = pymunk.Space()
+space.gravity = 0, 100
+draw_options = pymunk.pygame_util.DrawOptions(screen)
+ 
+#---------바닥------------
+ground = pymunk.Body(body_type=pymunk.Body.STATIC)
+ground.position = 50, 350
+space.add(ground)
 
-# (0, 50) 위치에 (10, 10) 크기의 박스를 생성한다.
-body = pymunk.Body(1, 1666)  # 질량, 모멘트를 지정한다.
-body.position = 0, 50
-poly = pymunk.Poly.create_box(body,(10,10))
-space.add(body,poly)
-
-ground = pymunk.Body(body_type = pymunk.Body.STATIC)
-ground.position = 0,0
-
-ground_shape = pymunk.Segment(ground,(-50,0),(50,0),1) #두 점과 두께
+ground_shape = pymunk.Segment(ground, (-50, 0), (50, 0), 10)
 space.add(ground_shape)
+ 
+ #-------------떨어지는 상자------------
+body = pymunk.Body(1, 1666)
+body.position = 50, 200
+  
+poly = pymunk.Poly.create_box(body, (20, 20))
 
-
-
-
+space.add(body, poly)
+ 
+timeStep = 1.0 / 60
+ 
 running = True
 while running:
     for event in pygame.event.get():
@@ -43,6 +47,14 @@ while running:
         if event.type == KEYDOWN and event.key == K_ESCAPE:
             running = False
             continue
+
+    screen.fill((0, 0, 0, 0))
+ 
+    space.debug_draw(draw_options)
+    space.step(timeStep)
+ 
+    pygame.display.flip()
+    clock.tick(TARGET_FPS)
 
  
 pygame.quit()
