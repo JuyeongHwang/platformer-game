@@ -23,7 +23,7 @@ screen = pygame.display.set_mode((800,800)) #screen 만들기
 clock = pygame.time.Clock() #game time 생성
 
 #pymunk
-space = pymunk.Space()
+space = pymunk.Space() 
 space.gravity = (0,100)
 apples = []
 apples.append(create_apple(space))
