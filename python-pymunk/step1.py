@@ -33,6 +33,7 @@ Ingame = True
 while Ingame: #game loop
     for event in pygame.event.get(): #user input 확인
         if event.type == pygame.QUIT: #close game
+            
             pygame.quit()
             sys.exit()
 
