@@ -1,5 +1,5 @@
 # pygame & pymunk
 
-## A goal of this repository is imporoving previous code
+## 🎊 A goal of this repository is imporoving previous code
 
 ### Step1 . pymunk
