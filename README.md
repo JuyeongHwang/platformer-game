@@ -4,7 +4,10 @@
 
 ### Befor modification
 
-<image> 추가,, ㅇ
+
+Uploading 황주영_pygame.mp4…
+
+
 
 ### Step1 . pymunk
 
